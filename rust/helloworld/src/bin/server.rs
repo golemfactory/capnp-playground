@@ -63,6 +63,7 @@ fn main() {
 
     let client = ToClient::new(ServerImpl::new()).into_client::<Server>();
 
+    println!("Starting server...");
     current_thread::block_on_all(listener.incoming().for_each(move |stream| {
         stream.set_nodelay(true)?;
         let (reader, writer) = stream.split();
