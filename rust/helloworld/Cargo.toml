@@ -6,7 +6,9 @@ authors = ["Adam Wierzbicki <awierzbicki@golem.network>"]
 [dependencies]
 capnp = "0.9"
 capnp-rpc = "0.9"
+native-tls = "0.2"
 tokio = "0.1"
+tokio-tls = "0.2"
 
 [[bin]]
 name = "client"
