@@ -71,8 +71,8 @@ fn main() {
     let listener = TcpListener::bind(&addr).unwrap();
 
     // TLS acceptor
-    let der = read(&args[2]).unwrap();
-    let identity = Identity::from_pkcs12(der.as_slice(), "").unwrap();
+    let cert = read(&args[2]).unwrap();
+    let identity = Identity::from_pkcs12(cert.as_slice(), "").unwrap();
     let tls_acceptor = NativeAcceptor::builder(identity).build().unwrap();
     let tls_acceptor = TokioAcceptor::from(tls_acceptor);
 
