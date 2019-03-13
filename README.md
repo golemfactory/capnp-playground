@@ -59,15 +59,17 @@ python python/client.py 127.0.0.1:<PORT>
 
 The library is future-based and tokio-compatible.
 
+TLS support is provided by [tokio-tls](https://docs.rs/tokio-tls/0.2.1/tokio_tls/) library.
+
 To re-generate Rust definitions you need `capnp` binary ([install instruction](https://capnproto.org/install.html)) and `capnpc` crate installed. Once you have these run:
 ```
 capnp compile -orust:./rust/helloworld/src/ helloworld.capnp
 ```
 To start server run:
 ```
-./rust/helloworld/target/debug/server.exe 127.0.0.1:<PORT>
+./rust/helloworld/target/debug/server.exe 127.0.0.1:<PORT> ./keys/server.p12
 ```
 To start client run:
 ```
-./rust/helloworld/target/debug/client.exe 127.0.0.1:<PORT>
+./rust/helloworld/target/debug/client.exe 127.0.0.1:<PORT> ./keys/server.crt
 ```
