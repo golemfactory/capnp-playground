@@ -42,15 +42,25 @@ It's a wrapper around C++ library which uses its own event loop.
 1. Activate the virtual env and run `python setup.py install --force-system-libcapnp`
 1. Good luck!
 
+---
+
 No code generation is needed, pycapnp does it on the fly.
 
-To start server run:
+To start non-encrypted server run:
 ```
-python python/server.py 127.0.0.1:<PORT>
+python python/server.py 127.0.0.1 <PORT>
 ```
-To start client run:
+To start SSL server run:
 ```
-python python/client.py 127.0.0.1:<PORT>
+python python/ssl_server.py 127.0.0.1 <PORT> ./keys/server.crt ./keys/server.key
+```
+To start non-encrypted client run:
+```
+python python/client.py 127.0.0.1 <PORT>
+```
+To start SSL client run:
+```
+python python/ssl_client.py 127.0.0.1 <PORT> ./keys/server.crt
 ```
 
 ## Rust
@@ -59,17 +69,29 @@ python python/client.py 127.0.0.1:<PORT>
 
 The library is future-based and tokio-compatible.
 
-TLS support is provided by [tokio-tls](https://docs.rs/tokio-tls/0.2.1/tokio_tls/) library.
+SSL support is provided by [tokio-tls](https://docs.rs/tokio-tls/0.2.1/tokio_tls/) or [tokio-openssl](https://docs.rs/tokio-openssl/0.3.0/tokio_openssl/).
 
 To re-generate Rust definitions you need `capnp` binary ([install instruction](https://capnproto.org/install.html)) and `capnpc` crate installed. Once you have these run:
 ```
 capnp compile -orust:./rust/helloworld/src/ helloworld.capnp
 ```
-To start server run:
+To start non-encrypted server run:
 ```
-./rust/helloworld/target/debug/server.exe 127.0.0.1:<PORT> ./keys/server.p12
+./rust/helloworld/target/debug/server.exe 127.0.0.1:<PORT>
 ```
-To start client run:
+To start native SSL server run:
+```
+./rust/helloworld/target/debug/native_ssl_server.exe 127.0.0.1:<PORT> ./keys/server.p12
+```
+To start OpenSSL server run:
+```
+./rust/helloworld/target/debug/openssl_server.exe 127.0.0.1:<PORT> ./keys/server.crt ./keys/server.key 
+```
+To start non-encrypted client run:
+```
+./rust/helloworld/target/debug/client.exe 127.0.0.1:<PORT>
+```
+To start native SSL client run:
 ```
 ./rust/helloworld/target/debug/client.exe 127.0.0.1:<PORT> ./keys/server.crt
 ```

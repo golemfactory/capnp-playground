@@ -18,6 +18,14 @@ name = "client"
 path = "src/bin/client.rs"
 
 [[bin]]
+name = "native_ssl_client"
+path = "src/bin/native_ssl_client.rs"
+
+[[bin]]
+name = "server"
+path = "src/bin/server.rs"
+
+[[bin]]
 name = "native_ssl_server"
 path = "src/bin/native_ssl_server.rs"
 
