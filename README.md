@@ -71,6 +71,9 @@ The library is future-based and tokio-compatible.
 
 SSL support is provided by [tokio-tls](https://docs.rs/tokio-tls/0.2.1/tokio_tls/) or [tokio-openssl](https://docs.rs/tokio-openssl/0.3.0/tokio_openssl/).
 
+To build the project you need OpenSSL installed. For Windows use [this distribution](https://slproweb.com/products/Win32OpenSSL.html).
+Before running `cargo build` set `OPENSSL_DIR` variable to point to your OpenSSL installation directory.
+
 To re-generate Rust definitions you need `capnp` binary ([install instruction](https://capnproto.org/install.html)) and `capnpc` crate installed. Once you have these run:
 ```
 capnp compile -orust:./rust/helloworld/src/ helloworld.capnp
